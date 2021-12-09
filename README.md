@@ -37,5 +37,5 @@ we have two types of models :
 
 ### Wireframe 
 
-![wireframe] (https://i.imgur.com/Sqk3BX5.png)
+![wireframe](https://i.imgur.com/Sqk3BX5.png)
 

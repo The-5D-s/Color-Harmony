@@ -37,6 +37,7 @@ Our project MVP will be processing images in order to extract colors from it.
 3. We will try to add a support section, that users can use to contact us if they had a complaint or an inquiry.
 
 <hr>
+
 ## Functional Requirements
 
 ### functionalities:
