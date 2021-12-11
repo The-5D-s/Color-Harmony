@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3colorharmonystoragedepb3p3z2qq37",
+  "bucketName": "color-harmony-storage-depb3p3z2qq37",
+  "policyUUID": "039a6036",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

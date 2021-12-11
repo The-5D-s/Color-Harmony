@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-colorharmony-staging-122324-authRole",
+      "UnauthRoleArn": "arn:aws:iam::915835842582:role/amplify-colorharmony-staging-122324-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::915835842582:role/amplify-colorharmony-staging-122324-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-colorharmony-staging-122324-deployment",
+      "UnauthRoleName": "amplify-colorharmony-staging-122324-unauthRole",
+      "StackName": "amplify-colorharmony-staging-122324",
+      "StackId": "arn:aws:cloudformation:us-east-1:915835842582:stack/amplify-colorharmony-staging-122324/22f0c8e0-5a7d-11ec-9c40-0a77912f1803",
+      "AmplifyAppId": "depb3p3z2qq37"
+    },
+    "categories": {
+      "auth": {
+        "colorharmony": {}
+      }
+    }
+  }
+}
