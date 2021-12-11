@@ -26,7 +26,7 @@ Color Harmony can extract all prominent colors from any photo/image. It shows co
 
 ### DataBase and domain modeling  
 
-![model](https://i.imgur.com/YVM0OPi.png)  
+![model](https://i.imgur.com/YVM0OPi.png)
 
 we have two types of models :  
 
