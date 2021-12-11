@@ -28,7 +28,9 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.amplifyframework:aws-api:1.30.0'
+    implementation 'com.amplifyframework:aws-datastore:1.30.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
