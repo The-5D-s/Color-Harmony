@@ -54,10 +54,22 @@
         android:id="@+id/imageView4"
         android:layout_width="151dp"
         android:layout_height="117dp"
-        android:onClick="openFiles"
+        android:onClick="openProfile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/images" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="73dp"
+        android:layout_height="55dp"
+        android:onClick="openSettings"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icons8_edit_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

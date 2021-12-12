@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openSettings(View v) {
+        Intent i = new Intent(MainActivity.this, Settings.class);
+        MainActivity.this.startActivity(i);
+
+    }
+
     public void openFiles(View v) {
         Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
         chooseFile.setType("*/*");
