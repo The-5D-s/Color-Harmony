@@ -50,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public void openProfile(View v) {
+        Intent i = new Intent(MainActivity.this, Profile.class);
+        MainActivity.this.startActivity(i);
+
+    }
+
     public void openFiles(View v) {
         Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
         chooseFile.setType("*/*");
@@ -95,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.this.startActivity(i);
         }
     }
+
+
 
 }
 
