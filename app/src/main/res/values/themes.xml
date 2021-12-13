@@ -15,4 +15,13 @@
         <item name="backgroundColor">#ffffff</item>
         <item name="textColor">#000000</item>
     </style>
+
+    <style name="Theme.ColorHarmony.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ColorHarmony.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ColorHarmony.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

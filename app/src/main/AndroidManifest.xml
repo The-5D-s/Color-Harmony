@@ -15,6 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.Light">
         <activity
             android:name=".ResetPassword"
@@ -22,6 +23,20 @@
         <activity
             android:name=".EditProfile"
             android:exported="false" />
+
+        android:theme="@style/Theme.ColorHarmony">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="Color Harmony"
+            android:theme="@style/Theme.ColorHarmony.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".Settings"
             android:exported="false" />
@@ -37,15 +52,7 @@
         <activity
             android:name=".PaletteGenerator"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
