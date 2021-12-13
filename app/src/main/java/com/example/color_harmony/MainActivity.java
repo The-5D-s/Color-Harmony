@@ -116,8 +116,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openProfile(MenuItem item) {
-        Intent i = new Intent(MainActivity.this, Profile.class);
-        MainActivity.this.startActivity(i);
+        Amplify.Auth.fetchAuthSession(
+                user -> {
+                    if (user.isSignedIn()) {
+                        Intent i = new Intent(MainActivity.this, Profile.class);
+                        MainActivity.this.startActivity(i);
+
+                    } else {
+                        Intent i = new Intent(MainActivity.this, Login.class);
+                        MainActivity.this.startActivity(i);
+
+                    }
+                },
+                failure -> Log.e("Amplify", "Could not query DataStore", failure)
+        );
+
+
 
     }
 
@@ -170,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuu" +uri);
             Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
             i.putExtra("image", uri);
+            i.setData(uri);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                 ImageView taskimage = findViewById(R.id.myImage);

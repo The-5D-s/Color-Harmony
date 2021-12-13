@@ -31,7 +31,7 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_anchor="@+id/appBarLayout"
         app:layout_anchorGravity="center"
-        app:popupTheme="@style/Theme.ColorHarmony.NoActionBar"
+        app:popupTheme="@style/Theme.Light.NoActionBar"
         app:titleTextColor="#FFFFFF" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

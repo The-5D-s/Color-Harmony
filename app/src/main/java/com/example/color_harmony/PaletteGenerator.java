@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 
+
+
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,9 +25,7 @@ public class PaletteGenerator extends AppCompatActivity {
     // Generate palette synchronously and return it
 
 
-
-
-//    File file = new File("/Users/macbookpro/projects/401/test/Color-Harmony/app/src/main/res/drawable/image1.jpg");
+    //    File file = new File("/Users/macbookpro/projects/401/test/Color-Harmony/app/src/main/res/drawable/image1.jpg");
 //
 //    Bitmap image = BitmapFactory.decodeFile(file.getAbsolutePath());
     public Palette createPaletteSync(Bitmap bitmap) {
@@ -42,12 +43,13 @@ public class PaletteGenerator extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_palette_generator);
 
-        Uri imageUri=getIntent().getData();
+        Uri imageUri = getIntent().getData();
         Bitmap bitmap = null;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
