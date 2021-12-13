@@ -54,7 +54,7 @@
         android:id="@+id/imageView4"
         android:layout_width="151dp"
         android:layout_height="117dp"
-        android:onClick="openFiles"
+        android:onClick="openProfile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

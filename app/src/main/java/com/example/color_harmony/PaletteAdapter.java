@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +45,15 @@ public class PaletteAdapter extends RecyclerView.Adapter<PaletteAdapter.PaletteV
 
     @Override
     public void onBindViewHolder(@NonNull PaletteViewHolder holder, int position) {
+        holder.palette = allPalette.get(position);
+
+       ImageView iv= holder.itemView.findViewById(R.id.imageFragmentProfile);
+       RecyclerView rv = holder.itemView.findViewById(R.id.paletteRVProfile);
+
+//       iv.setImageResource(holder.palette.getId());
+
+//        TextView taskTitle  = holder.itemView.findViewById(R.id.titleInFregment);
+//        taskTitle.setText(holder.task.getTitle());
 
     }
 
