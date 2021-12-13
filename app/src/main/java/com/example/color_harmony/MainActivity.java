@@ -169,12 +169,6 @@ public class MainActivity extends AppCompatActivity {
             Uri uri = resultData.getData();
             System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuu" +uri);
             Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
-
-            i.setData(uri);
-            MainActivity.this.startActivity(i);
-        }
-    }
-
             i.putExtra("image", uri);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
@@ -183,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
 
             FloatingActionButton btn = findViewById(R.id.fab);
             btn.setOnClickListener(new  View.OnClickListener(){
