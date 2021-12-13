@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
            Uri uri = resultData.getData();
             Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
-            i.putExtra("image", uri);
+            i.setData(uri);
             MainActivity.this.startActivity(i);
         }
     }
