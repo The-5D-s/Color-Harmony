@@ -11,9 +11,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.color_harmony.databinding.ActivityMainBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,6 +41,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.color_harmony.databinding.ActivityMainBinding;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain2.toolbar);
-        binding.appBarMain2.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        binding.appBarMain2.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -109,13 +115,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void openProfile(View v) {
+    public void openProfile(MenuItem item) {
         Intent i = new Intent(MainActivity.this, Profile.class);
         MainActivity.this.startActivity(i);
 
     }
 
-    public void openSettings(View v) {
+    public void openSettings(MenuItem item) {
         Intent i = new Intent(MainActivity.this, Settings.class);
         MainActivity.this.startActivity(i);
 
@@ -163,8 +169,34 @@ public class MainActivity extends AppCompatActivity {
             Uri uri = resultData.getData();
             System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuu" +uri);
             Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
-            i.putExtra("image", uri);
+
+            i.setData(uri);
             MainActivity.this.startActivity(i);
         }
     }
+
+            i.putExtra("image", uri);
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                ImageView taskimage = findViewById(R.id.myImage);
+                taskimage.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            FloatingActionButton btn = findViewById(R.id.fab);
+            btn.setOnClickListener(new  View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    MainActivity.this.startActivity(i);
+
+                }
+            });
+
+
+        }
+    }
+
+
 }

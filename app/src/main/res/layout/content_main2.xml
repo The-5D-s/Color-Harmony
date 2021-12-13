@@ -22,56 +22,38 @@
         app:navGraph="@navigation/mobile_navigation" />
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="73dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="108dp"
-        android:onClick="openSettings"
-        app:layout_constraintBottom_toTopOf="@+id/imageView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/icons8_edit_24" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="151dp"
-        android:layout_height="117dp"
-        android:background="#FFFFFF"
-        android:onClick="openProfile"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/myImage"
+        android:layout_width="283dp"
+        android:layout_height="367dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/images" />
+        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_content_main2"
+        app:srcCompat="@drawable/logo_x_large" />
 
     <ImageView
-        android:id="@+id/camera2"
-        android:layout_width="114dp"
-        android:layout_height="71dp"
-        android:layout_marginEnd="44dp"
+        android:id="@+id/imageView4"
+        android:layout_width="143dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="156dp"
         android:onClick="openCamera"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/folder2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.847"
-        app:srcCompat="@drawable/camera__1_" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myImage"
+        app:layout_constraintVertical_bias="0.674"
+        app:srcCompat="@drawable/camera__2_" />
 
     <ImageView
-        android:id="@+id/folder2"
-        android:layout_width="114dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="40dp"
+        android:id="@+id/imageView5"
+        android:layout_width="131dp"
+        android:layout_height="101dp"
         android:onClick="openFiles"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/camera"
-        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.771"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846"
-        app:srcCompat="@drawable/_12_x_512___png" />
+        app:layout_constraintTop_toBottomOf="@+id/myImage"
+        app:layout_constraintVertical_bias="0.148"
+        app:srcCompat="@drawable/folder" />
 </androidx.constraintlayout.widget.ConstraintLayout>
