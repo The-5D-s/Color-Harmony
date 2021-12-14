@@ -3,6 +3,7 @@ package com.example.color_harmony;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +35,7 @@ public class colorAdapter extends RecyclerView.Adapter<colorAdapter.colorViewHol
     @NonNull
     @Override
     public colorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_palette,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_color,parent,false);
         colorAdapter.colorViewHolder colorViewHolder = new colorAdapter.colorViewHolder(view);
 
         return colorViewHolder;
@@ -43,6 +44,9 @@ public class colorAdapter extends RecyclerView.Adapter<colorAdapter.colorViewHol
     @Override
     public void onBindViewHolder(@NonNull colorViewHolder holder, int position) {
         holder.color = allColor.get(position);
+        TextView color = holder.itemView.findViewById(R.id.hexColor);
+        color.setBackgroundColor(android.graphics.Color.parseColor(holder.color.getRgb()));
+        System.out.println(holder.color.getRgb() + " color adapter");
 
     }
 
