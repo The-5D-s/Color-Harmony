@@ -20,8 +20,7 @@ public class Settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             setTheme(R.style.Theme_Dark);
         }
@@ -29,8 +28,11 @@ public class Settings extends AppCompatActivity {
             setTheme(R.style.Theme_Light);
         }
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
 
-
+        mode = findViewById(R.id.mode);
+        share = findViewById(R.id.share);
 
         mode = findViewById(R.id.mode);
         share = findViewById(R.id.share);

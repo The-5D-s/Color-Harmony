@@ -1,18 +1,19 @@
 type Color @model @auth(rules: [{allow: public}]) {
   id: ID!
   rgb: String
-  paletteID: ID @index(name: "byPalette")
+  paletteID: ID @index(name: "byColorPalette")
 }
 
-type Palette @model @auth(rules: [{allow: public}]) {
+type ColorPalette @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   userID: ID @index(name: "byUser")
-  Colors: [Color] @hasMany(indexName: "byPalette", fields: ["id"])
+  Colors: [Color] @hasMany(indexName: "byColorPalette", fields: ["id"])
 }
 
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
-  Palettes: [Palette] @hasMany(indexName: "byUser", fields: ["id"])
+  Palettes: [ColorPalette] @hasMany(indexName: "byUser", fields: ["id"])
 }
+ 
