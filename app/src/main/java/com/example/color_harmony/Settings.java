@@ -11,12 +11,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 
 public class Settings extends AppCompatActivity {
 
     Switch mode;
     Button share;
+    ImageView image;
+    Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,6 @@ public class Settings extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
-        mode = findViewById(R.id.mode);
-        share = findViewById(R.id.share);
 
         mode = findViewById(R.id.mode);
         share = findViewById(R.id.share);
@@ -66,5 +66,6 @@ public class Settings extends AppCompatActivity {
 
             }
         });
+        
         }
 }
