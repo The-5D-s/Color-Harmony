@@ -38,6 +38,7 @@ public class SignUp extends AppCompatActivity {
                 Intent confirm=new Intent(SignUp.this,SignUpConfirm.class);
                 AuthSignUpOptions options = AuthSignUpOptions.builder()
                         .userAttribute(AuthUserAttributeKey.email(), email.getText().toString())
+                        .userAttribute(AuthUserAttributeKey.name(), userName.getText().toString())
                         .build();
                 Amplify.Auth.signUp(userName.getText().toString(), password.getText().toString(), options,
                         result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
