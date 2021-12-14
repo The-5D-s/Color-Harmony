@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amplifyframework.AmplifyException;
@@ -25,6 +26,7 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Palette;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.color_harmony.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -49,11 +51,12 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    private static final int CAMERA_REQUEST = 12;
+    private static final int CAMERA_REQUEST = 13;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
 
@@ -179,30 +182,47 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
+        Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
+        ImageView taskimage = findViewById(R.id.myImage);
+        TextView btn = findViewById(R.id.fab);
         if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
             Uri uri = resultData.getData();
             System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuu" +uri);
-            Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
+
             i.putExtra("image", uri);
             i.setData(uri);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                ImageView taskimage = findViewById(R.id.myImage);
                 taskimage.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            FloatingActionButton btn = findViewById(R.id.fab);
+
             btn.setOnClickListener(new  View.OnClickListener(){
                 @Override
                 public void onClick(View v){
+                    if (!btn.isClickable()) {
+                       Toast.makeText(getApplicationContext(), "Please add an Image", Toast.LENGTH_LONG).show();
+                    }
                     MainActivity.this.startActivity(i);
-
                 }
             });
 
 
+        } else if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) resultData.getExtras().get("data");
+            i.putExtra("image", photo);
+            taskimage.setImageBitmap(photo);
+            btn.setOnClickListener(new  View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    if (!btn.isClickable()) {
+                        Toast.makeText(getApplicationContext(), "Please add an Image", Toast.LENGTH_LONG).show();
+                    }
+                    MainActivity.this.startActivity(i);
+                }
+            });
         }
     }
 

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
@@ -27,7 +26,7 @@ public class SignUp extends AppCompatActivity {
 
         EditText password=findViewById(R.id.password1);
 
-        Button signUp=findViewById(R.id.signup);
+        Button signUp=findViewById(R.id.loginButton);
 
 
 
@@ -38,6 +37,7 @@ public class SignUp extends AppCompatActivity {
                 Intent confirm=new Intent(SignUp.this,SignUpConfirm.class);
                 AuthSignUpOptions options = AuthSignUpOptions.builder()
                         .userAttribute(AuthUserAttributeKey.email(), email.getText().toString())
+                        .userAttribute(AuthUserAttributeKey.name(), userName.getText().toString())
                         .build();
                 Amplify.Auth.signUp(userName.getText().toString(), password.getText().toString(), options,
                         result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
