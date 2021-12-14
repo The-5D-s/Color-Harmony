@@ -50,6 +50,7 @@
         <activity
             android:name=".PaletteGenerator"
             android:exported="false" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -57,6 +58,7 @@
         <activity
             android:name=".SignUp"
             android:exported="false" />
+
         <activity
             android:name=".SignUpConfirm"
             android:exported="false" />
