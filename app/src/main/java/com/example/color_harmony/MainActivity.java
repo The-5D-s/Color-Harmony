@@ -72,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Amplify", "Could not initialize Amplify", error);
         }
 
-        Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart", result.toString()),
-                error -> Log.e("AmplifyQuickstart", error.toString())
-        );
+//        Amplify.Auth.fetchAuthSession(
+//                result -> Log.i("AmplifyQuickstart", result.toString()),
+//                error -> Log.e("AmplifyQuickstart", error.toString())
+//        );
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
