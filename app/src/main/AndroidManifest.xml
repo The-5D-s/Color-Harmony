@@ -42,6 +42,12 @@
         <activity
             android:name=".PaletteGenerator"
             android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpConfirm"
+            android:exported="false" />
     </application>
 
 </manifest>
