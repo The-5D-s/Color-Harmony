@@ -68,12 +68,17 @@ public class PaletteGenerator extends AppCompatActivity {
 
         ClipboardManager clipboard = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
 
-        Uri imageUri = getIntent().getData();
+        Intent intent = getIntent();
         Bitmap bitmap = null;
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(getIntent().getData() == null){
+            bitmap = (Bitmap) intent.getParcelableExtra("image");
+        } else {
+            Uri imageUri=getIntent().getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         List<Palette.Swatch> list = createPaletteSync(bitmap).getSwatches();
@@ -98,45 +103,44 @@ public class PaletteGenerator extends AppCompatActivity {
                             }
                             else {
                                 Amplify.DataStore.query(
-                                        User.class,
+                                        User.class,User.NAME.contains(Amplify.Auth.getCurrentUser().getUsername()),
                                         items -> {
                                             while (items.hasNext()) {
                                                 User item = items.next();
                                                 users.add(item);
-                                                Log.i("Amplify", "Id " + item.getId());
+                                                Log.i("Amplify", "Id " + item.getName());
                                             }
+                                            System.out.println(users.toString());
+                                            System.out.println(Amplify.Auth.getCurrentUser().getUsername() + "before if");
+                                            User user = users.get(0);
+                                            System.out.println(user.getName() + "user name");
+                                                System.out.println(Amplify.Auth.getCurrentUser().getUsername()+ "after if");
+
+                                                ColorPalette item = ColorPalette.builder()
+                                                        .userId(user.getId())
+                                                        .build();
+                                                Amplify.DataStore.save(
+                                                        item,
+                                                        success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+                                                        error -> Log.e("Amplify", "Could not save item to DataStore", error)
+                                                );
+
+
+                                                for (int i = 0 ; i < 6 ; i++) {
+                                                    Color color = Color.builder()
+                                                            .rgb(String.format("#%06X", (0xFFFFFF & list.get(i).getRgb())))
+                                                            .paletteId(item.getId())
+                                                            .build();
+                                                    Amplify.DataStore.save(
+                                                            color,
+                                                            success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+                                                            error -> Log.e("Amplify", "Could not save item to DataStore", error)
+                                                    );
+                                                }
                                         },
                                         failure -> Log.e("Amplify", "Could not query DataStore", failure)
                                 );
-                                if(users.contains(Amplify.Auth.getCurrentUser().getUsername())) {
-                                    User user = null;
-                                    for ( User u: users) {
-                                        if (users.contains(Amplify.Auth.getCurrentUser().getUsername()))
-                                            user = u;
-                                    }
 
-                                    ColorPalette item = ColorPalette.builder()
-                                            .userId(user.getId())
-                                            .build();
-                                    Amplify.DataStore.save(
-                                            item,
-                                            success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-                                            error -> Log.e("Amplify", "Could not save item to DataStore", error)
-                                    );
-
-
-                                    for (int i = 0 ; i < 6 ; i++) {
-                                        Color color = Color.builder()
-                                                .rgb(String.format("#%06X", (0xFFFFFF & list.get(i).getRgb())))
-                                                .paletteId(item.getId())
-                                                .build();
-                                        Amplify.DataStore.save(
-                                                color,
-                                                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-                                                error -> Log.e("Amplify", "Could not save item to DataStore", error)
-                                        );
-                                    }
-                                }
                             }
                         },
                         error -> Log.e("AmplifyQuickstart", error.toString())

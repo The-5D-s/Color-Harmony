@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -26,7 +25,11 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Color;
+import com.amplifyframework.datastore.generated.model.ColorPalette;
 import com.amplifyframework.datastore.generated.model.Palette;
+import com.amplifyframework.datastore.generated.model.Test;
+import com.amplifyframework.datastore.generated.model.User;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.color_harmony.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
         try {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSS3StoragePlugin());
@@ -77,6 +82,36 @@ public class MainActivity extends AppCompatActivity {
 //                error -> Log.e("AmplifyQuickstart", error.toString())
 //        );
 
+
+//        User item = User.builder()
+//                .name("emams")
+//                .build();
+//        Amplify.DataStore.save(
+//                item,
+//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//        );
+//
+//
+//        ColorPalette item1 = ColorPalette.builder()
+//                .name("Lorem ipsum dolor sit amet")
+//                .userId(item.getId())
+//                .build();
+//        Amplify.DataStore.save(
+//                item,
+//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//        );
+//
+//        Color color = Color.builder()
+//                .rgb("red")
+//                .paletteId(item1.getId())
+//                .build();
+//        Amplify.DataStore.save(
+//                item,
+//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//        );
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -193,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
             i.setData(uri);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+//                i.putExtra("image", bitmap);
                 taskimage.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
