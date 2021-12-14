@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
     implementation 'com.google.android.material:material:1.5.0-beta01'
     implementation 'com.amplifyframework:aws-auth-cognito:1.30.0'
