@@ -20,14 +20,13 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-
 //        Amplify.Auth.fetchAuthSession(
 //                result -> Log.i("AmplifyQuickstart", result.toString()),
 //                error -> Log.e("AmplifyQuickstart", error.toString())
 //        );
 
-        EditText userName=findViewById(R.id.userName);
-        EditText password=findViewById(R.id.password);
+        EditText userName=findViewById(R.id.userName1);
+        EditText password=findViewById(R.id.password1);
 
 
         Button loginButton=findViewById(R.id.loginButton);
@@ -64,4 +63,5 @@ public class Login extends AppCompatActivity {
 
 
     }
-}
+
+    }
