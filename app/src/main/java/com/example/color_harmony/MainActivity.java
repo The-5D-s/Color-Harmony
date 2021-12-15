@@ -306,26 +306,26 @@ public class MainActivity extends AppCompatActivity {
         Button log = findViewById(R.id.signIn);
 
         Button signIn = findViewById(R.id.signIn);
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Amplify.Auth.signInWithWebUI(
-                        MainActivity.this,
-                        result -> Log.i("LOGIN", result.toString()),
-                        error -> Log.e("LOGIN", error.toString())
-                );
-            }
-        });
+//        signIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Amplify.Auth.signInWithWebUI(
+//                        MainActivity.this,
+//                        result -> Log.i("LOGIN", result.toString()),
+//                        error -> Log.e("LOGIN", error.toString())
+//                );
+//            }
+//        });
         Button signOut = findViewById(R.id.signout);
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Amplify.Auth.signOut(
-                        () -> Log.i("LOGOUT", "Signed out successfully"),
-                        error -> Log.e("LOGOUT", error.toString())
-                );
-            }
-        });
+//        signOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Amplify.Auth.signOut(
+//                        () -> Log.i("LOGOUT", "Signed out successfully"),
+//                        error -> Log.e("LOGOUT", error.toString())
+//                );
+//            }
+//        });
         Amplify.Auth.fetchAuthSession(
                 result -> {
                     Log.i("“AmplifyQuickstart”", result.toString());
@@ -339,6 +339,6 @@ public class MainActivity extends AppCompatActivity {
                 },
                 error -> Log.e("“AmplifyQuickstart”", error.toString())
         );
-
     }
+
 }
