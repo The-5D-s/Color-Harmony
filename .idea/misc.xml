@@ -4,26 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/drawable/images.xml" value="0.2703125" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/activity_palette_generator.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/activity_resulte_view.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/activity_similar_palette.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/app_bar_main2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/content_main2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/fragment_color.xml" value="0.264" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/fragment_login.xml" value="0.4" />
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/fragment_palette.xml" value="0.264" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/header_navigation_drawer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/nav_header_main2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Color-Harmony/app/src/main/res/layout/row.xml" value="0.2" />
         <entry key="..\:/Users/STUDENT/Desktop/Color-Harmony/app/src/main/res/layout/activity_login.xml" value="0.35260416666666666" />
-        <entry key="..\:/Users/STUDENT/Desktop/Color-Harmony/app/src/main/res/layout/activity_main.xml" value="0.36367753623188404" />
-        <entry key="..\:/Users/STUDENT/Desktop/Color-Harmony/app/src/main/res/layout/activity_profile.xml" value="0.36367753623188404" />
-        <entry key="..\:/Users/STUDENT/Desktop/Color-Harmony/app/src/main/res/layout/activity_similar_palette.xml" value="0.35260416666666666" />
-        <entry key="app/src/main/res/drawable/images.xml" value="0.1171875" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.11510416666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1743659420289855" />
-        <entry key="app/src/main/res/layout/activity_palette_generator.xml" value="0.125" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1743659420289855" />
-        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1743659420289855" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.11510416666666666" />
-        <entry key="app/src/main/res/layout/activity_similar_palette.xml" value="0.1743659420289855" />
-        <entry key="app/src/main/res/layout/app_bar_main2.xml" value="0.1743659420289855" />
-        <entry key="app/src/main/res/layout/content_main2.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_color.xml" value="0.13124349402382599" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1743659420289855" />
-        <entry key="app/src/main/res/layout/fragment_palette.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/nav_header_main2.xml" value="0.11510416666666666" />
       </map>
     </option>
   </component>
