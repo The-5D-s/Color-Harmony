@@ -88,28 +88,28 @@ public class MainActivity extends AppCompatActivity {
 
 //        Button signOut = findViewById(R.id.signout);
 
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                Amplify.Auth.fetchAuthSession(
-                        user -> {
-                            if (user.isSignedIn()) {
-                                Amplify.Auth.signOut(
-                                        () -> Log.i("LOGOUT", "Signed out successfully"),
-                                        error -> Log.e("LOGOUT", error.toString())
-                                );
-
-                            } else {
-                                Intent i = new Intent(MainActivity.this, Login.class);
-                                MainActivity.this.startActivity(i);
-
-                            }
-                        },
-                        failure -> Log.e("Amplify", "Could not query DataStore", failure)
-                );
-            }
-        });
+//        signIn.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            public void onClick(View v) {
+//                Amplify.Auth.fetchAuthSession(
+//                        user -> {
+//                            if (user.isSignedIn()) {
+//                                Amplify.Auth.signOut(
+//                                        () -> Log.i("LOGOUT", "Signed out successfully"),
+//                                        error -> Log.e("LOGOUT", error.toString())
+//                                );
+//
+//                            } else {
+//                                Intent i = new Intent(MainActivity.this, Login.class);
+//                                MainActivity.this.startActivity(i);
+//
+//                            }
+//                        },
+//                        failure -> Log.e("Amplify", "Could not query DataStore", failure)
+//                );
+//            }
+//        });
 
 
 //        Amplify.Auth.fetchAuthSession(
@@ -331,18 +331,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Amplify.Auth.fetchAuthSession(
-                user -> {
-                    if (user.isSignedIn()) {
-
-                        signIn.setText("Log out");
-                    } else {
-
-                        signIn.setText("Log in");
-                    }
-                },
-                failure -> Log.e("Amplify", "Could not query DataStore", failure)
-        );
+//        Amplify.Auth.fetchAuthSession(
+//                user -> {
+//                    if (user.isSignedIn()) {
+//
+//                        signIn.setText("Log out");
+//                    } else {
+//
+//                        signIn.setText("Log in");
+//                    }
+//                },
+//                failure -> Log.e("Amplify", "Could not query DataStore", failure)
+//        );
     }
 
 }

@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginBottom="4dp"
-      
+        android:onClick="login"
         android:text="Log In"
         android:textColor="#FBFBFB"
         android:textColorHighlight="#FFFFFF"
