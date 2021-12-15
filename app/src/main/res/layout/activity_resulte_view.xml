@@ -7,7 +7,7 @@
     tools:context=".PaletteGenerator">
 
     <LinearLayout
-        android:id="@+id/rootLayout"
+        android:id="@+id/rootLayout2"
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,14 +21,14 @@
 
         <ImageView
             android:padding="@dimen/_7sdp"
-            android:id="@+id/imageHolder"
+            android:id="@+id/imageHolder2"
 
             android:layout_width="match_parent"
             android:layout_height="@dimen/_245sdp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/color1"
+            android:id="@+id/colorResult1"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
@@ -38,7 +38,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/color2"
+            android:id="@+id/colorResult2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
             android:background="#AAA6A6"
@@ -48,7 +48,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/color3"
+            android:id="@+id/colorResult3"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
@@ -58,7 +58,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/color4"
+            android:id="@+id/colorResult4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
             android:background="#AAA6A6"
@@ -68,7 +68,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/color5"
+            android:id="@+id/colorResult5"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
@@ -78,7 +78,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/color6"
+            android:id="@+id/colorResult6"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
             android:background="#AAA6A6"

@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Amplify", "Could not initialize Amplify", error);
         }
 
-//        Amplify.Auth.fetchAuthSession(
-//                result -> Log.i("AmplifyQuickstart", result.toString()),
-//                error -> Log.e("AmplifyQuickstart", error.toString())
-//        );
+        Amplify.Auth.fetchAuthSession(
+                result -> Log.i("AmplifyQuickstart", result.toString()),
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
 
 
         TextView username = findViewById(R.id.username);
@@ -112,52 +112,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        username.setText(Amplify.Auth.getCurrentUser().getUsername());
-//        username.setText("Emam Shararah");
-
-
-//        User item = User.builder()
-//                .name("emams")
-//                .build();
-//        Amplify.DataStore.save(
-//                item,
-//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
-//        );
-//
-//
-//        ColorPalette item1 = ColorPalette.builder()
-//                .name("Lorem ipsum dolor sit amet")
-//                .userId(item.getId())
-//                .build();
-//        Amplify.DataStore.save(
-//                item,
-//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
-//        );
-//
-//        Color color = Color.builder()
-//                .rgb("red")
-//                .paletteId(item1.getId())
-//                .build();
-//        Amplify.DataStore.save(
-//                item,
-//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
-//        );
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain2.toolbar);
-//        binding.appBarMain2.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -313,23 +274,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-//            String key = uri.getEncodedPath();
-//
-//            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-//            sharedPreferences.edit().putString("key", key).apply();
-//
-//            try {
-//                InputStream file = getContentResolver().openInputStream(uri);
-//                Amplify.Storage.uploadInputStream(
-//                        key,
-//                        file,
-//                        result -> Log.i("UPLOAD", "Successfully uploaded: " + result.getKey()),
-//                        storageFailure -> Log.e("UPLOAD", "Upload failed", storageFailure)
-//                );
-//
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
+
 
         } else if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) resultData.getExtras().get("data");

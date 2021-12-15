@@ -4,16 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.palette.graphics.Palette;
 
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -29,12 +27,10 @@ import com.amplifyframework.datastore.generated.model.Color;
 import com.amplifyframework.datastore.generated.model.ColorPalette;
 import com.amplifyframework.datastore.generated.model.User;
 
-import java.io.File;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PaletteGenerator extends AppCompatActivity {
@@ -92,6 +88,7 @@ public class PaletteGenerator extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Amplify.Auth.fetchAuthSession(
                         result -> {
                             Log.i("AmplifyQuickstart", result.toString());
@@ -125,6 +122,24 @@ public class PaletteGenerator extends AppCompatActivity {
                                                     item,
                                                     success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
                                                     error -> Log.e("Amplify", "Could not save item to DataStore", error)
+                                            );
+
+                                            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                                            bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                                            byte[] bitmapdata = bos.toByteArray();
+                                            ByteArrayInputStream bs = new ByteArrayInputStream(bitmapdata);
+
+
+                                            String key = item.getId();
+
+                                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PaletteGenerator.this);
+                                            sharedPreferences.edit().putString("key", key).apply();
+
+                                            Amplify.Storage.uploadInputStream(
+                                                    key,
+                                                    bs,
+                                                    imageResult -> Log.i("UPLOAD", "Successfully uploaded: " + imageResult.getKey()),
+                                                    storageFailure -> Log.e("UPLOAD", "Upload failed", storageFailure)
                                             );
 
 
@@ -228,10 +243,10 @@ public class PaletteGenerator extends AppCompatActivity {
         });
 
 
-        LinearLayout rootLayout = findViewById(R.id.rootLayout);
+        LinearLayout rootLayout = findViewById(R.id.rootLayout2);
 
         rootLayout.setBackgroundColor(createPaletteSync(bitmap).getDominantSwatch().getRgb());
-        ImageView image = findViewById(R.id.imageHolder);
+        ImageView image = findViewById(R.id.imageHolder2);
         image.setImageBitmap(bitmap);
     }
 
