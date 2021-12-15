@@ -48,8 +48,8 @@ public class Profile extends AppCompatActivity {
 
 
         System.out.println("-------------------xxxx");
-        TextView userName = findViewById(R.id.userProfileName);
-        ImageView userImage = findViewById(R.id.userProfileImage);
+//        TextView userName = findViewById(R.id.userProfileName);
+//        ImageView userImage = findViewById(R.id.userProfileImage);
 
 
 

@@ -94,6 +94,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
+        Button log = findViewById(R.id.log);
+
+//        Amplify.Auth.fetchAuthSession(
+//                user -> {
+//                    if (user.isSignedIn()) {
+//
+//                        log.setText("Log out");
+//                    } else {
+//
+//                        log.setText("Log in");
+//                    }
+//                },
+//                failure -> Log.e("Amplify", "Could not query DataStore", failure)
+//        );
+
+
 //        username.setText(Amplify.Auth.getCurrentUser().getUsername());
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -134,27 +151,6 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(i);
 
 
-    }
-
-    @SuppressLint("SetTextI18n")
-    void handleShared(Intent intent) {
-        Intent otherIntent = new Intent(MainActivity.this, PaletteGenerator.class);
-        TextView btn = findViewById(R.id.fab);
-        ImageView taskimage = findViewById(R.id.myImage);
-        Uri uri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-        otherIntent.setData(uri);
-        try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-            taskimage.setImageBitmap(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.this.startActivity(otherIntent);
-            }
-        });
     }
 
 
@@ -230,6 +226,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    Uri uri;
+
+    @SuppressLint("SetTextI18n")
+    void handleShared(Intent intent) {
+         uri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        Intent otherIntent = new Intent(MainActivity.this, PaletteGenerator.class);
+        TextView btn = findViewById(R.id.fab);
+        ImageView taskimage = findViewById(R.id.myImage);
+        otherIntent.setData(uri);
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+            taskimage.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startActivity(otherIntent);
+            }
+        });
+    }
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -239,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
         TextView btn = findViewById(R.id.fab);
         if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
-            Uri uri = resultData.getData();
+             uri = resultData.getData();
             i.setData(uri);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
@@ -270,5 +289,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Button log = findViewById(R.id.log);
+
+//        Amplify.Auth.fetchAuthSession(
+//                user -> {
+//                    if (user.isSignedIn()) {
+//
+//                        log.setText("Log out");
+//                    } else {
+//
+//                        log.setText("Log in");
+//                    }
+//                },
+//                failure -> Log.e("Amplify", "Could not query DataStore", failure)
+//        );
+    }
 
 }
