@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.palette.graphics.Palette;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -38,7 +39,8 @@ import java.util.List;
 
 public class PaletteGenerator extends AppCompatActivity {
     // Generate palette synchronously and return it
-
+    Uri imageUri;
+    Bitmap bitmap;
     List<User> users = new ArrayList<>();
 
     //    File file = new File("/Users/macbookpro/projects/401/test/Color-Harmony/app/src/main/res/drawable/image1.jpg");
@@ -69,11 +71,12 @@ public class PaletteGenerator extends AppCompatActivity {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
 
         Intent intent = getIntent();
-        Bitmap bitmap = null;
-        if(getIntent().getData() == null){
+
+
+        if (getIntent().getData() == null) {
             bitmap = (Bitmap) intent.getParcelableExtra("image");
         } else {
-            Uri imageUri=getIntent().getData();
+            imageUri = getIntent().getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
             } catch (IOException e) {
@@ -92,7 +95,7 @@ public class PaletteGenerator extends AppCompatActivity {
                 Amplify.Auth.fetchAuthSession(
                         result -> {
                             Log.i("AmplifyQuickstart", result.toString());
-                            if(!result.isSignedIn()){
+                            if (!result.isSignedIn()) {
                                 PaletteGenerator.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -100,10 +103,9 @@ public class PaletteGenerator extends AppCompatActivity {
                                     }
                                 });
 
-                            }
-                            else {
+                            } else {
                                 Amplify.DataStore.query(
-                                        User.class,User.NAME.contains(Amplify.Auth.getCurrentUser().getUsername()),
+                                        User.class, User.NAME.contains(Amplify.Auth.getCurrentUser().getUsername()),
                                         items -> {
                                             while (items.hasNext()) {
                                                 User item = items.next();
@@ -114,29 +116,29 @@ public class PaletteGenerator extends AppCompatActivity {
                                             System.out.println(Amplify.Auth.getCurrentUser().getUsername() + "before if");
                                             User user = users.get(0);
                                             System.out.println(user.getName() + "user name");
-                                                System.out.println(Amplify.Auth.getCurrentUser().getUsername()+ "after if");
+                                            System.out.println(Amplify.Auth.getCurrentUser().getUsername() + "after if");
 
-                                                ColorPalette item = ColorPalette.builder()
-                                                        .userId(user.getId())
+                                            ColorPalette item = ColorPalette.builder()
+                                                    .userId(user.getId())
+                                                    .build();
+                                            Amplify.DataStore.save(
+                                                    item,
+                                                    success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+                                                    error -> Log.e("Amplify", "Could not save item to DataStore", error)
+                                            );
+
+
+                                            for (int i = 0; i < 6; i++) {
+                                                Color color = Color.builder()
+                                                        .rgb(String.format("#%06X", (0xFFFFFF & list.get(i).getRgb())))
+                                                        .paletteId(item.getId())
                                                         .build();
                                                 Amplify.DataStore.save(
-                                                        item,
+                                                        color,
                                                         success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
                                                         error -> Log.e("Amplify", "Could not save item to DataStore", error)
                                                 );
-
-
-                                                for (int i = 0 ; i < 6 ; i++) {
-                                                    Color color = Color.builder()
-                                                            .rgb(String.format("#%06X", (0xFFFFFF & list.get(i).getRgb())))
-                                                            .paletteId(item.getId())
-                                                            .build();
-                                                    Amplify.DataStore.save(
-                                                            color,
-                                                            success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-                                                            error -> Log.e("Amplify", "Could not save item to DataStore", error)
-                                                    );
-                                                }
+                                            }
                                         },
                                         failure -> Log.e("Amplify", "Could not query DataStore", failure)
                                 );
@@ -154,7 +156,7 @@ public class PaletteGenerator extends AppCompatActivity {
         color1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager cm = (ClipboardManager)PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cm = (ClipboardManager) PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(color1.getText());
                 Toast.makeText(PaletteGenerator.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
             }
@@ -167,7 +169,7 @@ public class PaletteGenerator extends AppCompatActivity {
         color2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager cm = (ClipboardManager)PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cm = (ClipboardManager) PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(color2.getText());
                 Toast.makeText(PaletteGenerator.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
             }
@@ -180,7 +182,7 @@ public class PaletteGenerator extends AppCompatActivity {
         color3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager cm = (ClipboardManager)PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cm = (ClipboardManager) PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(color3.getText());
                 Toast.makeText(PaletteGenerator.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
             }
@@ -193,7 +195,7 @@ public class PaletteGenerator extends AppCompatActivity {
         color4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager cm = (ClipboardManager)PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cm = (ClipboardManager) PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(color4.getText());
                 Toast.makeText(PaletteGenerator.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
             }
@@ -206,7 +208,7 @@ public class PaletteGenerator extends AppCompatActivity {
         color5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager cm = (ClipboardManager)PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cm = (ClipboardManager) PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(color5.getText());
                 Toast.makeText(PaletteGenerator.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
             }
@@ -219,7 +221,7 @@ public class PaletteGenerator extends AppCompatActivity {
         color6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager cm = (ClipboardManager)PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cm = (ClipboardManager) PaletteGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(color6.getText());
                 Toast.makeText(PaletteGenerator.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
             }
@@ -232,4 +234,6 @@ public class PaletteGenerator extends AppCompatActivity {
         ImageView image = findViewById(R.id.imageHolder);
         image.setImageBitmap(bitmap);
     }
+
+
 }

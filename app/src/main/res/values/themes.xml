@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Light" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimary">#0B5385</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">#03DAC5</item>
         <!-- Secondary brand color. -->

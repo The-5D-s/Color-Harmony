@@ -17,25 +17,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.NoActionBar">
         <activity
-            android:name=".ResultView"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="Color Harmony"
             android:theme="@style/Theme.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ResetPassword"
             android:exported="false" />
         <activity
             android:name=".EditProfile"
             android:exported="false" />
+
         <activity
             android:name=".Settings"
             android:exported="false" />
@@ -50,7 +48,18 @@
             android:exported="false" />
         <activity
             android:name=".PaletteGenerator"
-            android:exported="false" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
@@ -59,9 +68,12 @@
         <activity
             android:name=".SignUp"
             android:exported="false" />
+
         <activity
             android:name=".SignUpConfirm"
             android:exported="false" />
+
     </application>
+
 
 </manifest>
