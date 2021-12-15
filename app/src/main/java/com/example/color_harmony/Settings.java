@@ -19,7 +19,6 @@ public class Settings extends AppCompatActivity {
     Switch mode;
     Button share;
     ImageView image;
-    Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +35,7 @@ public class Settings extends AppCompatActivity {
 
         mode = findViewById(R.id.mode);
         share = findViewById(R.id.share);
+        image = findViewById(R.id.edit);
 
         mode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -66,6 +66,15 @@ public class Settings extends AppCompatActivity {
 
             }
         });
-        
-        }
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, EditProfile.class);
+                startActivity(intent);
+            }
+        });
+
+
+    }
 }
