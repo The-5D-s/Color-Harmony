@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentFAV"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_170sdp"
+    android:layout_height="@dimen/_190sdp"
     tools:context=".PaletteFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_170sdp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imageFragmentProfile"
@@ -22,7 +24,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/loading" />
 
         <LinearLayout
             android:layout_marginStart="10dp"
