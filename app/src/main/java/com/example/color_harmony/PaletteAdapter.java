@@ -3,7 +3,11 @@ package com.example.color_harmony;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +27,7 @@ import com.amplifyframework.datastore.generated.model.ColorPalette;
 import com.amplifyframework.datastore.generated.model.Palette;
 import com.amplifyframework.datastore.generated.model.User;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +67,23 @@ public class PaletteAdapter extends RecyclerView.Adapter<PaletteAdapter.PaletteV
         List<Color> colorsArray = new ArrayList<>();
 
        ImageView iv= holder.itemView.findViewById(R.id.imageFragmentProfile);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(holder.itemView.getContext());
+        String key = sharedPreferences.getString("key", "No Location Found");
+        Amplify.Storage.downloadFile(
+                key,
+                new File(holder.itemView.getContext().getFilesDir() + "/download.txt"),
+                result -> {
+                    Log.i("MyAmplifyApp", "Successfully downloaded: " + result.getFile().getAbsolutePath());
+                    File imgFile = new File(result.getFile().getAbsolutePath());
+                    if (imgFile.exists()) {
+                        Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                        iv.setImageBitmap(myBitmap);
+                    }
+
+                },
+                error -> Log.e("MyAmplifyApp", "Download Failure", error)
+        );
 
 
                 Amplify.DataStore.query(
