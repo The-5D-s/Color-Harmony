@@ -83,42 +83,47 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        Button log = findViewById(R.id.signIn);
-
         Button signIn = findViewById(R.id.signIn);
-//        signIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Amplify.Auth.signInWithWebUI(
-//                        MainActivity.this,
-//                        result -> Log.i("LOGIN", result.toString()),
-//                        error -> Log.e("LOGIN", error.toString())
-//                );
-//            }
-//        });
-        Button signOut = findViewById(R.id.signout);
-//        signOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Amplify.Auth.signOut(
-//                        () -> Log.i("LOGOUT", "Signed out successfully"),
-//                        error -> Log.e("LOGOUT", error.toString())
-//                );
-//            }
-//        });
-        Amplify.Auth.fetchAuthSession(
-                result -> {
-                    Log.i("“AmplifyQuickstart”", result.toString());
-                    if (!result.isSignedIn()) {
-                        signIn.setVisibility(View.VISIBLE);
-                        signOut.setVisibility(View.INVISIBLE);
-                    } else {
-                        signIn.setVisibility(View.GONE);
-                        signOut.setVisibility(View.VISIBLE);
-                    }
-                },
-                error -> Log.e("“AmplifyQuickstart”", error.toString())
-        );
+
+//        Button signOut = findViewById(R.id.signout);
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                Amplify.Auth.fetchAuthSession(
+                        user -> {
+                            if (user.isSignedIn()) {
+                                Amplify.Auth.signOut(
+                                        () -> Log.i("LOGOUT", "Signed out successfully"),
+                                        error -> Log.e("LOGOUT", error.toString())
+                                );
+
+                            } else {
+                                Intent i = new Intent(MainActivity.this, Login.class);
+                                MainActivity.this.startActivity(i);
+
+                            }
+                        },
+                        failure -> Log.e("Amplify", "Could not query DataStore", failure)
+                );
+            }
+        });
+
+
+//        Amplify.Auth.fetchAuthSession(
+//                result -> {
+//                    Log.i("“AmplifyQuickstart”", result.toString());
+//                    if (!result.isSignedIn()) {
+//                        signIn.setVisibility(View.VISIBLE);
+//                        signOut.setVisibility(View.INVISIBLE);
+//                    } else {
+//                        signIn.setVisibility(View.GONE);
+//                        signOut.setVisibility(View.VISIBLE);
+//                    }
+//                },
+//                error -> Log.e("“AmplifyQuickstart”", error.toString())
+//        );
 
 
 //        username.setText(Amplify.Auth.getCurrentUser().getUsername());
@@ -303,41 +308,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Button log = findViewById(R.id.signIn);
+
 
         Button signIn = findViewById(R.id.signIn);
-//        signIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Amplify.Auth.signInWithWebUI(
-//                        MainActivity.this,
-//                        result -> Log.i("LOGIN", result.toString()),
-//                        error -> Log.e("LOGIN", error.toString())
-//                );
-//            }
-//        });
-        Button signOut = findViewById(R.id.signout);
-//        signOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Amplify.Auth.signOut(
-//                        () -> Log.i("LOGOUT", "Signed out successfully"),
-//                        error -> Log.e("LOGOUT", error.toString())
-//                );
-//            }
-//        });
+
+//        Button signOut = findViewById(R.id.signout);
+
+//        Amplify.Auth.fetchAuthSession(
+//                result -> {
+//                    Log.i("“AmplifyQuickstart”", result.toString());
+//                    if (!result.isSignedIn()) {
+//                        signIn.setVisibility(View.VISIBLE);
+//                        signOut.setVisibility(View.INVISIBLE);
+//                    } else {
+//                        signIn.setVisibility(View.GONE);
+//                        signOut.setVisibility(View.VISIBLE);
+//                    }
+//                },
+//                error -> Log.e("“AmplifyQuickstart”", error.toString())
+//        );
+
+
+
         Amplify.Auth.fetchAuthSession(
-                result -> {
-                    Log.i("“AmplifyQuickstart”", result.toString());
-                    if (!result.isSignedIn()) {
-                        signIn.setVisibility(View.VISIBLE);
-                        signOut.setVisibility(View.INVISIBLE);
+                user -> {
+                    if (user.isSignedIn()) {
+
+                        signIn.setText("Log out");
                     } else {
-                        signIn.setVisibility(View.GONE);
-                        signOut.setVisibility(View.VISIBLE);
+
+                        signIn.setText("Log in");
                     }
                 },
-                error -> Log.e("“AmplifyQuickstart”", error.toString())
+                failure -> Log.e("Amplify", "Could not query DataStore", failure)
         );
     }
 
