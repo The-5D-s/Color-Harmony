@@ -89,7 +89,7 @@ public class Profile extends AppCompatActivity {
                         );
                         Log.i("Amplify", "Id " + item.getId());
                     }
-                    handler.post(runnable);
+//                    handler.post(runnable);
                 },
                 failure -> Log.e("Amplify", "Could not query DataStore", failure)
         );
