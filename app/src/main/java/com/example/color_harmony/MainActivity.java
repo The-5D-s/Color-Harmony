@@ -97,15 +97,15 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
         Button signOut = findViewById(R.id.signout);
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Amplify.Auth.signOut(
-                        () -> Log.i("LOGOUT", "Signed out successfully"),
-                        error -> Log.e("LOGOUT", error.toString())
-                );
-            }
-        });
+//        signOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Amplify.Auth.signOut(
+//                        () -> Log.i("LOGOUT", "Signed out successfully"),
+//                        error -> Log.e("LOGOUT", error.toString())
+//                );
+//            }
+//        });
         Amplify.Auth.fetchAuthSession(
                 result -> {
                     Log.i("“AmplifyQuickstart”", result.toString());
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void signout(MenuItem item) {
+    public void signout(View v) {
         Amplify.Auth.signOut(
                 () -> Log.i("AuthQuickstart", "Signed out successfully"),
                 error -> Log.e("AuthQuickstart", error.toString())
