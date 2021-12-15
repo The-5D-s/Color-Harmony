@@ -72,6 +72,9 @@
         <activity
             android:name=".SignUpConfirm"
             android:exported="false" />
+        <activity
+            android:name=".ResultView"
+            android:exported="false" />
         <activity android:name=".Preference" />
 
     </application>

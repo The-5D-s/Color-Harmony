@@ -69,7 +69,7 @@ public class PaletteAdapter extends RecyclerView.Adapter<PaletteAdapter.PaletteV
        ImageView iv= holder.itemView.findViewById(R.id.imageFragmentProfile);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(holder.itemView.getContext());
-        String key = sharedPreferences.getString("key", "No Location Found");
+        String key = holder.palette.getId();
         Amplify.Storage.downloadFile(
                 key,
                 new File(holder.itemView.getContext().getFilesDir() + "/download.txt"),
@@ -117,14 +117,17 @@ public class PaletteAdapter extends RecyclerView.Adapter<PaletteAdapter.PaletteV
                         },
                         failure -> Log.e("Amplify", "Could not query DataStore", failure)
                 );
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ResultView.class);
+                System.out.println(holder.palette.getId() + " xxxxxxxxxx");
+                i.putExtra("palette",holder.palette.getId());
+                v.getContext().startActivity(i);
+            }
+        });
 
 
-
-
-//       iv.setImageResource(holder.palette.getId());
-
-//        TextView taskTitle  = holder.itemView.findViewById(R.id.titleInFregment);
-//        taskTitle.setText(holder.task.getTitle());
 
     }
 
