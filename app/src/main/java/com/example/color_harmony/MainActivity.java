@@ -86,16 +86,16 @@ public class MainActivity extends AppCompatActivity {
         Button log = findViewById(R.id.signIn);
 
         Button signIn = findViewById(R.id.signIn);
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Amplify.Auth.signInWithWebUI(
-                        MainActivity.this,
-                        result -> Log.i("LOGIN", result.toString()),
-                        error -> Log.e("LOGIN", error.toString())
-                );
-            }
-        });
+//        signIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Amplify.Auth.signInWithWebUI(
+//                        MainActivity.this,
+//                        result -> Log.i("LOGIN", result.toString()),
+//                        error -> Log.e("LOGIN", error.toString())
+//                );
+//            }
+//        });
         Button signOut = findViewById(R.id.signout);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
