@@ -9,8 +9,8 @@
     <LinearLayout
 
         android:id="@+id/linearLayout"
-        android:layout_width="@dimen/_180sdp"
-        android:layout_height="@dimen/_125sdp"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,23 +20,23 @@
 
         <ImageView
             android:id="@+id/userProfileImage"
-            android:layout_width="@dimen/_180sdp"
-            android:layout_height="@dimen/_95sdp"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_55sdp"
             app:srcCompat="@drawable/images" />
 
         <TextView
             android:id="@+id/userProfileName"
-            android:layout_width="@dimen/_180sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_15sdp"
             android:gravity="center_horizontal|center_vertical"
             android:text="User Name"
-            android:textSize="16sp" />
+            android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/profileRV"
-        android:layout_width="@dimen/_300sdp"
-        android:layout_height="@dimen/_395sdp"
+        android:layout_width="@dimen/_310sdp"
+        android:layout_height="@dimen/_450sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"

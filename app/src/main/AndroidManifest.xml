@@ -23,7 +23,6 @@
             android:theme="@style/Theme.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -49,12 +48,12 @@
             android:exported="false" />
         <activity
             android:name=".PaletteGenerator"
-            android:exported= "true"
+            android:exported="true"
             android:parentActivityName=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="image/*"/>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
             </intent-filter>
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -75,5 +74,6 @@
             android:exported="false" />
 
     </application>
+
 
 </manifest>
