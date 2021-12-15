@@ -6,41 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".Profile">
 
-    <LinearLayout
-
-        android:id="@+id/linearLayout"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_70sdp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029">
-
-        <ImageView
-            android:id="@+id/userProfileImage"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_55sdp"
-            app:srcCompat="@drawable/images" />
-
-        <TextView
-            android:id="@+id/userProfileName"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_15sdp"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="User Name"
-            android:textSize="@dimen/_9ssp" />
-    </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/profileRV"
-        android:layout_width="@dimen/_310sdp"
-        android:layout_height="@dimen/_450sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_490sdp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="182dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/baloo_bhai"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_18sdp"
+        android:text="Saved Palettes"
+        android:textAlignment="center"
+        android:textColor="#083361"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/profileRV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
