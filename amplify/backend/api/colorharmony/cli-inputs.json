@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "colorharmony",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-6d12f336-ec38-4d16-8bcb-9bdae4a8562b/amplify/backend/api/colorharmony/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-b2417fd9-a3eb-4e5d-ac67-f395a1fd6182/amplify/backend/api/colorharmony/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",

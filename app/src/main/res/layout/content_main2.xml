@@ -63,12 +63,13 @@
 
     <TextView
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/layout_bg"
         android:backgroundTintMode="multiply"
         android:fontFamily="@font/baloo_bhai"
+        android:gravity="center"
         android:padding="@dimen/_5sdp"
         android:text="Generate Palette"
         android:textAlignment="center"
@@ -76,7 +77,7 @@
         android:textSize="@dimen/_16ssp"
         app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_content_main2"
         app:layout_constraintEnd_toEndOf="@+id/nav_host_fragment_content_main2"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/nav_host_fragment_content_main2" />
 
 

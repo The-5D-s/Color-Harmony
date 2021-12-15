@@ -4,13 +4,14 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,7 +27,11 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Color;
+import com.amplifyframework.datastore.generated.model.ColorPalette;
 import com.amplifyframework.datastore.generated.model.Palette;
+import com.amplifyframework.datastore.generated.model.Test;
+import com.amplifyframework.datastore.generated.model.User;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.color_harmony.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,9 +47,9 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.color_harmony.databinding.ActivityMainBinding;
-
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,9 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
 
 
         try {
@@ -77,6 +80,53 @@ public class MainActivity extends AppCompatActivity {
 //                error -> Log.e("AmplifyQuickstart", error.toString())
 //        );
 
+
+        TextView username = findViewById(R.id.username);
+        TextView email = findViewById(R.id.email);
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if (type.startsWith("image/")) {
+                handleShared(intent);
+            }
+        }
+
+//        username.setText(Amplify.Auth.getCurrentUser().getUsername());
+//        username.setText("Emam Shararah");
+
+
+//        User item = User.builder()
+//                .name("emams")
+//                .build();
+//        Amplify.DataStore.save(
+//                item,
+//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//        );
+//
+//
+//        ColorPalette item1 = ColorPalette.builder()
+//                .name("Lorem ipsum dolor sit amet")
+//                .userId(item.getId())
+//                .build();
+//        Amplify.DataStore.save(
+//                item,
+//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//        );
+//
+//        Color color = Color.builder()
+//                .rgb("red")
+//                .paletteId(item1.getId())
+//                .build();
+//        Amplify.DataStore.save(
+//                item,
+//                success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//        );
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -117,6 +167,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void profile(MenuItem item) {
+
+        Intent i = new Intent(MainActivity.this, Profile.class);
+        MainActivity.this.startActivity(i);
+
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    void handleShared(Intent intent) {
+        Intent otherIntent = new Intent(MainActivity.this, PaletteGenerator.class);
+        TextView btn = findViewById(R.id.fab);
+        ImageView taskimage = findViewById(R.id.myImage);
+        Uri uri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        otherIntent.setData(uri);
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+            taskimage.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startActivity(otherIntent);
+            }
+        });
+    }
+
 
     public void openProfile(MenuItem item) {
         Amplify.Auth.fetchAuthSession(
@@ -133,14 +212,27 @@ public class MainActivity extends AppCompatActivity {
                 },
                 failure -> Log.e("Amplify", "Could not query DataStore", failure)
         );
-
-
-
     }
 
     public void openSettings(MenuItem item) {
         Intent i = new Intent(MainActivity.this, Preference.class);
         MainActivity.this.startActivity(i);
+
+    }
+
+    public void login(View v) {
+        Intent i = new Intent(MainActivity.this, Login.class);
+        MainActivity.this.startActivity(i);
+
+    }
+
+
+    public void signout(MenuItem item) {
+        Amplify.Auth.signOut(
+                () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                error -> Log.e("AuthQuickstart", error.toString())
+        );
+        finish();
 
     }
 
@@ -182,14 +274,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
-        Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
         ImageView taskimage = findViewById(R.id.myImage);
+        Intent i = new Intent(MainActivity.this, PaletteGenerator.class);
         TextView btn = findViewById(R.id.fab);
         if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
             Uri uri = resultData.getData();
-            System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuu" +uri);
-
-            i.putExtra("image", uri);
             i.setData(uri);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
@@ -198,28 +287,38 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
-            btn.setOnClickListener(new  View.OnClickListener(){
+            btn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
-                    if (!btn.isClickable()) {
-                       Toast.makeText(getApplicationContext(), "Please add an Image", Toast.LENGTH_LONG).show();
-                    }
+                public void onClick(View v) {
                     MainActivity.this.startActivity(i);
                 }
             });
 
+//            String key = uri.getEncodedPath();
+//
+//            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+//            sharedPreferences.edit().putString("key", key).apply();
+//
+//            try {
+//                InputStream file = getContentResolver().openInputStream(uri);
+//                Amplify.Storage.uploadInputStream(
+//                        key,
+//                        file,
+//                        result -> Log.i("UPLOAD", "Successfully uploaded: " + result.getKey()),
+//                        storageFailure -> Log.e("UPLOAD", "Upload failed", storageFailure)
+//                );
+//
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
 
         } else if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) resultData.getExtras().get("data");
             i.putExtra("image", photo);
             taskimage.setImageBitmap(photo);
-            btn.setOnClickListener(new  View.OnClickListener(){
+            btn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
-                    if (!btn.isClickable()) {
-                        Toast.makeText(getApplicationContext(), "Please add an Image", Toast.LENGTH_LONG).show();
-                    }
+                public void onClick(View v) {
                     MainActivity.this.startActivity(i);
                 }
             });
